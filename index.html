@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+
+	<script type="text/javascript" src="render/3D/KUtils.js"></script>
+	<script type="text/javascript" src="render/libs/three.js"></script>
+	<script type="text/javascript" src="render/utils/Stats.js"></script>
+	<script type="text/javascript" src="render/utils/TrackballControls.js"></script>
+	<script type="text/javascript" src="render/drawings/simple_graph.js"></script>
+	<script type="text/javascript" src="render/Graph.js"></script>
+
+	<style>
+		html,body{
+			overflow:auto;
+			margin:0;
+			padding:0;
+			background-color: black
+		}
+		#graph-info{
+			position: absolute;
+			right: 10px;
+			top:10px
+			z-index:999;
+			display:none;
+			cursor: pointer;
+		}
+		input,#graph-info{
+			color:white;
+		}
+
+	</style>
+</head>
+<body>
+
+	<script type="text/javascript">
+	function getUrlVars() {
+          var vars = [],
+          hash;
+          var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+          for (var i = 0; i < hashes.length; i++) {
+            hash = hashes[i].split('=');
+            vars.push(hash[0]);
+            vars[hash[0]] = hash[1];
+          }
+          return vars;
+        }
+		var params = getUrlVars();
+		
+		var drawing;
+		function createDrawing(data) {        
+			drawing = new Drawing.SimpleGraph({data:data,selection: false, graphLayout:{width:params['width'],attraction: 1, repulsion: 1}, showStats: true, showInfo: true,showLabels:true,realtimeUpdate:true});         
+		}
+       createDrawing();
+        
+	</script>
+</body>
+</html>
