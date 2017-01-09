@@ -43,6 +43,11 @@ Drawing.SimpleGraph = function(options) {
     scene.background = new THREE.Color(0, 0, 0);
     document.body.appendChild(renderer.domElement);
 
+    stats = new Stats();
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild(stats.domElement);
+
     generate();
 
   }
@@ -118,9 +123,7 @@ Drawing.SimpleGraph = function(options) {
 
   function render() {
     // update stats
-    if (that.show_stats) {
-      stats.update();
-    }
+    stats.update();
 
     // render scene
     renderer.render(scene, camera);
